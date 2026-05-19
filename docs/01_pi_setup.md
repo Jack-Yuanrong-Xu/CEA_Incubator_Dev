@@ -13,14 +13,15 @@ This file includes all the hardware and software needed to build this working in
 - enabling I2C
 ### 3. Locate Pi's IP Address
 - Connect to your raspberry PI via raspberry pi connect
-'''bash
+```bash
 hostname -I # Command to find out the IP address which is the first segments of numbers. e.g. 192.168.1.72
-'''
+```
 
 ### 4. SSH Setup (some optional)
 - Generating key pair to your device (Windows is used in this project) 
-    ssh-keygen -t ed25519 -C "YOUR_EMAIL_ADDRESS" #use the email address you used to sign up for your rapsberry pi account #this is a public key
-
+```bash
+ssh-keygen -t ed25519 -C "YOUR_EMAIL_ADDRESS" #use the email address you used to sign up for your rapsberry pi account #this is a public key
+```
 Or is this key for github??
 - copying key to Pi
 - disabling password auth.
