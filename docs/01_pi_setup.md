@@ -34,18 +34,27 @@ hostname -I # Command to find out the IP address
 ```
 Write this IP down. You'll need it for SH and for referencing the Pi from your local network.
 
-### 4. SSH Setup (some optional)
-- Generating key pair to your device (Windows is used in this project) 
-```bash
-ssh-keygen -t ed25519 -C "YOUR_EMAIL_ADDRESS" #use the email address you used to sign up for your rapsberry pi account #this is a public key
+## 4. Enabling I2C and varify with i2cdetect
+
+Open your raspberry pi's terminal either through Raspberry Pi connect. 
+
+If doing through raspberry pi home page, just click top left corner.
+
+If doing through SSH:
+
+``` bash
+sudo raspi-config
 ```
-Or is this key for github??
-- copying key to Pi
-- disabling password auth.
 
-### 5. VS Code Remote-SSH (optional, could use raspberry pi connect website remote control)
+Then, 
 
-### 6. Tailscale VPN (optional, strongly recommended)
-- install on Pi, and other devices to access outside local network
+Go to interface Options, then I2C, select Yes, then OK, and Finish
+
+Confirm check by
+
+```bash
+ls /dev/i2c*
+```
+
 
 ### 7. Kasa Plug Timezone Setting
