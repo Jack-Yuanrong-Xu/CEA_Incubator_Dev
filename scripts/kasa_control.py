@@ -31,7 +31,7 @@ MAX_TEMP_AGE_SECONDS = 60          # If temperature reading is older than 60 sec
                                    # due to lose wire, disconnections), fail-safe mode activates
 MAX_CONSECUTIVE_FAILURES = 3
 
-
+# Retrieve newest sensor temperature reading from query_api
 def get_latest_temperature(query_api):
     query = f'''
     from(bucket: "{INFLUX_BUCKET}")
@@ -95,19 +95,23 @@ async def force_off_and_exit(plug, reason):
 
 async def main():
     print("Creating InfluxDB client...")
+    # Create "client" to access InfluxDB data
     client = InfluxDBClient(
         url=INFLUX_URL,
         token=INFLUX_TOKEN,
         org=INFLUX_ORG,
         timeout=5000,
     )
+    # Fill query_api with data from client
     query_api = client.query_api()
 
     print("Connecting to Kasa plug...")
+    # Define the plug through plug's IP address
     plug = await asyncio.wait_for(
         Discover.discover_single(PLUG_IP),
         timeout=KASA_TIMEOUT
     )
+    # To obtain plug's latest information and condition.?????
     await kasa_update(plug)
     print(f"Connected: {plug.alias} | Currently on: {plug.is_on}")
 
